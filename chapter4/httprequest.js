@@ -22,5 +22,4 @@ var req = http.request(options,function(res){
     });
 });
 
-req.write(contents);
-req.end();
+req.write(contents);   
