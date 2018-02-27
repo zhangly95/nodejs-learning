@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title><%= title %> - Microblog</title>
+    <link rel='stylesheet' href="/chapter5/microblog1/public/stylesheets/bootstrap.css" />
+    <style type="text/css">
+    body{
+       padding-top:60px;
+       padding-bottom:40px;
+       }
+    </style>
+    <link href="/chapter5/microblog1/public/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">Microblog</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="active"><a href="/"></a>首页</li>
+                    <li><a href="/login"></a>登入</li>
+                    <li><a href="/reg"></a>注册</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="container" class="container">
+        <%- body %>
+        <hr />
+        <footer>
+            <p>BYVoid</p>
+        </footer>
+    </div>
+  </body>
+  <script src="/chapter5/microblog1/public/javascripts/jquery-3.3.1.js"></script>
+  <script src="/chapter5/microblog1/public/javascripts/bootstrap.js"></script>
+</html>
