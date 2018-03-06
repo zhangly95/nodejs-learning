@@ -1,0 +1,66 @@
+doctype
+html
+    head
+        title=pageTitle
+        script(type='text/javascript').
+            function showCityEx(city)
+            {
+              return city + "&" + city;
+              }
+    body
+        //--@test以下几个字符有特殊意义；如果当做文本，必须使用|转义
+        //--@test转义1：-，jade代码的开头
+        //--@test转义2：|,jade多行文本的开头
+        //--@test转义3：/，jade注释的开头
+        //--@test转义4：=，jade代码表达式的开头        
+      
+        |- i begin at "-" (use |-prefix in jade)<br/>  
+        ||- i begin at "|"(use |-prefix in jade)<br/>  
+        |//--i begin at "//"(use |-prefix in jade)<br/>  
+        |=i begin at "="(use |-prefix in jade)  
+
+        h1 #{h1}
+
+        #container.col
+            if name=='liuchuanchuan'
+               p You are owner!
+            else
+               p You are #{name},and you are not owner!
+        //-后表示js代码，特别注意缩进相当于括号，以-开头
+        -var a=new Array()
+        -for(var i=0;i<citys.length;i++)
+          - a.push(citys[i])
+          - a[a.length-1]=a[a.length-1]+"_1"
+          p  old:#{a.length},#{a}
+          -a.push('qingdao')
+          p new:#{a.length},#{a}
+          p
+             |I had ever goto lots of citys(more than #{a.length}).<br/>
+             -a.push('chengdu')
+             =(a.length+10)+""
+             |is my dream!<br/>
+             |I had ever goto lots of citys(#{a}).
+             |I like to travel!
+             |do you?
+          p.
+             i had go to
+          p= "now length =" +a.length
+             |<br/>haha
+          ul
+            for city in citys
+              li=city
+            else
+              li sorry,no city!
+          
+          p this is an example of table.
+          table(border=1)
+            tr
+               th hello
+               th world,citys,count=#{cscores.length +3}
+               th count
+            for city,index in citys
+               tr
+                  td=index
+                  td welcome to #{city}(#{city.substr(0,4)})
+                  td=cscores[index]
+          div over!
