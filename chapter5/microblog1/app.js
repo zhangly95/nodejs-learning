@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials')
+var session  = require('express-session');
+var methodOverride = require('methodOverride');
 
 var index = require('./routes/index');
 var user = require('./routes/user');
@@ -15,7 +17,29 @@ var login = require('./routes/login');
 var doLogin = require('./routes/doLogin');
 var logout = require('./routes/logout');
 
+var MongoStore = require('connect-mongo')(session);
+var settings = require('../microblog1/settings');
+
 var app = express();
+
+//app.configure(function(){
+  app.set('Views',__dirname + '/../chapter5/microblog1/views');
+  app.set('View engine','ejs');
+  app.use(partials());
+  app.use(bodyParser());
+  app.use(methodOverride());
+  app.use(cookieParser());
+  app.use(session({
+    secret:settings.cookiesSecret,
+    store:new MongoStore({
+      db:settings.db
+    })
+  }));
+  app.use(express.router(routes));
+  app.use(express.static(__dirname + '/chapter5/microblog1/public'));
+//});
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
